@@ -308,7 +308,7 @@
                 };
 
                 try {
-    let response = await fetch("https://script.google.com/macros/s/AKfycby7KrFmYjNCQoHYxxMFaVId75ov46pxvB_ssrE9IJK9Y33Mj5eeJPNcSbJd1r6Icz_w/exec", {
+    let response = await fetch("https://script.google.com/macros/s/AKfycbwsaK-kOWYKyCIcIEIH9GE5-HteTQvZYSr9d3N4s925nzb7-06PzelcnioWIHKJdwrC/exec", {
         method: "POST",
         mode: "no-cors", // Prevents CORS errors
         headers: { "Content-Type": "application/json" },
@@ -319,14 +319,14 @@
         })
     });
 
-    console.log("Data sent successfully!");
-    alert("✅ Submission Successful! (Check Google Sheets)");
-    window.location.href = "login.html"; // Change this to your actual login page URL
+    alert("✅ Registration successful! Check your email for the password.");
+    window.location.href = "login.html"; // Redirect to login page
 
 } catch (error) {
     console.error("Error:", error);
     alert("🚨 Submission failed! Check console for details.");
 }
+
 
 
             });
